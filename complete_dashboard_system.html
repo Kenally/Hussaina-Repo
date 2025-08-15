@@ -1,0 +1,1418 @@
+                                <td>✅ Active</td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Emeka Okonkwo</td>
+                                <td>admin@haab.com</td>
+                                <td><span class="status-badge role-administrator">Administrator</span></td>
+                                <td>Information Technology</td>
+                                <td>✅ Active</td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Aisha Muhammed</td>
+                                <td>supervisor@haab.com</td>
+                                <td><span class="status-badge role-supervisor">Supervisor</span></td>
+                                <td>Operations</td>
+                                <td>✅ Active</td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h2>Recent System Activity</h2>
+                    <div style="space-y: 1rem;">
+                        <div style="padding: 1rem; background: rgba(102, 126, 234, 0.05); border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>New User Created:</strong> Olumide Adebayo - Initiator Role
+                            <div style="color: #718096; font-size: 0.875rem; margin-top: 0.25rem;">2 hours ago by Emeka Okonkwo</div>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(72, 187, 120, 0.05); border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>System Update:</strong> Validation rules updated for address changes
+                            <div style="color: #718096; font-size: 0.875rem; margin-top: 0.25rem;">5 hours ago by System</div>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(237, 137, 54, 0.05); border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>Role Updated:</strong> Kemi Adeyemi promoted to Senior Supervisor
+                            <div style="color: #718096; font-size: 0.875rem; margin-top: 0.25rem;">1 day ago by Emeka Okonkwo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Request Page -->
+            <div id="create-request" class="dashboard-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Create New Request</h1>
+                        <div class="breadcrumb">Home > Request Management > New Request</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="showPage('initiator-dashboard')">← Back to Dashboard</button>
+                </div>
+
+                <div class="card">
+                    <h2>Customer Information Update Request</h2>
+                    <form id="updateRequestForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Customer Account Number *</label>
+                                <input type="text" class="form-control" id="accountNumber" placeholder="ACC-XXXXXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Customer Name</label>
+                                <input type="text" class="form-control" id="customerName" readonly placeholder="Auto-filled after account lookup">
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Update Type *</label>
+                                <select class="form-control" id="updateType" required>
+                                    <option value="">Select Update Type</option>
+                                    <option value="address">Address Change</option>
+                                    <option value="phone">Phone Number Update</option>
+                                    <option value="email">Email Address Update</option>
+                                    <option value="employment">Employment Information</option>
+                                    <option value="personal">Personal Details</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Priority Level *</label>
+                                <select class="form-control" id="priority" required>
+                                    <option value="standard">Standard</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="updateFields" style="margin: 1.5rem 0;"></div>
+
+                        <div class="form-group">
+                            <label class="form-label">Customer Instruction Reference *</label>
+                            <input type="text" class="form-control" id="instructionRef" placeholder="e.g., Email dated 2024-08-15, Phone call reference #12345" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Supporting Documents</label>
+                            <input type="file" class="form-control" id="documents" multiple>
+                            <small style="color: #718096; font-size: 0.875rem; margin-top: 0.5rem; display: block;">Upload relevant documents (ID copy, proof of address, etc.)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Additional Comments</label>
+                            <textarea class="form-control" id="comments" rows="4" placeholder="Any additional information or special instructions..."></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                            <button type="submit" class="btn btn-primary">📝 Submit Request</button>
+                            <button type="button" class="btn btn-secondary" onclick="document.getElementById('updateRequestForm').reset()">🔄 Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- My Requests Page -->
+            <div id="my-requests" class="dashboard-page">
+                <div class="page-header">
+                    <div>
+                        <h1>My Requests</h1>
+                        <div class="breadcrumb">Home > Request Management > My Requests</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="showPage('create-request')">+ New Request</button>
+                </div>
+
+                <div class="card">
+                    <h2>Request History</h2>
+                    <div class="request-grid">
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>WF-2024-156: Address Update</h4>
+                                <span class="status-badge status-pending">Under Review</span>
+                            </div>
+                            <p><strong>Customer:</strong> Fatima Bello (ACC-123456)</p>
+                            <p><strong>Submitted:</strong> 3 hours ago</p>
+                            <p><strong>Reviewer:</strong> Kemi Adeyemi</p>
+                            <p><strong>Priority:</strong> High</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn btn-secondary">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="request-card approved">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>WF-2024-155: Phone Update</h4>
+                                <span class="status-badge status-approved">Completed</span>
+                            </div>
+                            <p><strong>Customer:</strong> Ibrahim Musa (ACC-789012)</p>
+                            <p><strong>Completed:</strong> Yesterday</p>
+                            <p><strong>Approved by:</strong> Aisha Muhammed</p>
+                            <p><strong>Core Banking:</strong> ✅ Updated</p>
+                        </div>
+
+                        <div class="request-card rejected">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>WF-2024-154: Email Update</h4>
+                                <span class="status-badge status-rejected">Needs Revision</span>
+                            </div>
+                            <p><strong>Customer:</strong> Chioma Okoro (ACC-345678)</p>
+                            <p><strong>Rejected:</strong> 2 days ago</p>
+                            <p><strong>Reason:</strong> Missing supporting documentation</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn btn-primary">📝 Resubmit</button>
+                                <button class="btn btn-secondary">👁 View Feedback</button>
+                            </div>
+                        </div>
+
+                        <div class="request-card approved">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>WF-2024-153: Employment Info</h4>
+                                <span class="status-badge status-approved">Completed</span>
+                            </div>
+                            <p><strong>Customer:</strong> Adebola Taiwo (ACC-456789)</p>
+                            <p><strong>Completed:</strong> 3 days ago</p>
+                            <p><strong>Approved by:</strong> Kemi Adeyemi</p>
+                            <p><strong>Processing Time:</strong> 4 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Approvals Page (Supervisor) -->
+            <div id="pending-approvals" class="dashboard-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Pending Approvals</h1>
+                        <div class="breadcrumb">Home > Request Review > Pending</div>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-secondary">📊 Generate Report</button>
+                        <button class="btn btn-secondary">🔍 Filter Requests</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Requests Awaiting Your Review</h2>
+                    <div class="request-grid">
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>WF-2024-158: Personal Details Update</h4>
+                                <span class="status-badge status-pending">High Priority</span>
+                            </div>
+                            <p><strong>Customer:</strong> Funmilayo Adepoju (ACC-678901)</p>
+                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
+                            <p><strong>Submitted:</strong> 30 minutes ago</p>
+                            <p><strong>Type:</strong> Name Change (Marriage)</p>
+                            <p><strong>Documents:</strong> ✅ Marriage Certificate, ✅ ID Copy</p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-success" onclick="approveRequest('WF-2024-158')">✓ Approve</button>
+                                <button class="btn btn-danger" onclick="rejectRequest('WF-2024-158')">✗ Reject</button>
+                                <button class="btn btn-secondary" onclick="reviewRequest('WF-2024-158')">👁 Review Details</button>
+                            </div>
+                        </div>
+
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>WF-2024-157: Address Change</h4>
+                                <span class="status-badge status-pending">Standard</span>
+                            </div>
+                            <p><strong>Customer:</strong> Amara Ezeugo (ACC-567890)</p>
+                            <p><strong>Initiated by:</strong> Chioma Nwachukwu</p>
+                            <p><strong>Submitted:</strong> 1 hour ago</p>
+                            <p><strong>Type:</strong> Residential Address</p>
+                            <p><strong>Documents:</strong> ✅ Utility Bill, ❌ Landlord Letter</p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-success" onclick="approveRequest('WF-2024-157')">✓ Approve</button>
+                                <button class="btn btn-danger" onclick="rejectRequest('WF-2024-157')">✗ Reject</button>
+                                <button class="btn btn-secondary" onclick="reviewRequest('WF-2024-157')">👁 Review Details</button>
+                            </div>
+                        </div>
+
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>WF-2024-156: Employment Update</h4>
+                                <span class="status-badge status-pending">Standard</span>
+                            </div>
+                            <p><strong>Customer:</strong> Yusuf Bello (ACC-234567)</p>
+                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
+                            <p><strong>Submitted:</strong> 2 hours ago</p>
+                            <p><strong>Type:</strong> New Employment Details</p>
+                            <p><strong>Documents:</strong> ✅ Employment Letter, ✅ Salary Certificate</p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-success" onclick="approveRequest('WF-2024-156')">✓ Approve</button>
+                                <button class="btn btn-danger" onclick="rejectRequest('WF-2024-156')">✗ Reject</button>
+                                <button class="btn btn-secondary" onclick="reviewRequest('WF-2024-156')">👁 Review Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create User Modal (Admin) -->
+    <div id="createUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createUserModal')">&times;</span>
+            <h2>Create New User</h2>
+            <form id="createUserForm" style="margin-top: 1.5rem;">
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" class="form-control" id="newUserName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="newUserEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Phone Number *</label>
+                    <input type="tel" class="form-control" id="newUserPhone" placeholder="+234-XXX-XXX-XXXX" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Role *</label>
+                    <select class="form-control" id="newUserRole" required>
+                        <option value="">Select Role</option>
+                        <option value="initiator">Initiator</option>
+                        <option value="supervisor">Supervisor</option>
+                        <option value="administrator">Administrator</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Department *</label>
+                    <select class="form-control" id="newUserDepartment" required>
+                        <option value="">Select Department</option>
+                        <option value="operations">Operations</option>
+                        <option value="user-access-management">User Access Management</option>
+                        <option value="information-technology">Information Technology</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Temporary Password *</label>
+                    <input type="password" class="form-control" id="newUserPassword" required>
+                    <small style="color: #718096; font-size: 0.875rem;">User will be required to change password on first login</small>
+                </div>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary">Create User</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('createUserModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Request Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reviewModal')">&times;</span>
+            <h2 id="reviewModalTitle">Review Request - WF-2024-XXX</h2>
+            <div id="reviewModalContent" style="margin-top: 1.5rem;">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User session management
+        let currentUser = null;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const userData = sessionStorage.getItem('currentUser');
+            if (userData) {
+                currentUser = JSON.parse(userData);
+                initializeDashboard(currentUser);
+            } else {
+                // Simulate login for demo - in real app, redirect to login
+                showLoginDemo();
+            }
+        });
+
+        function showLoginDemo() {
+            // For demo purposes, show a simple login selection
+            const loginOptions = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;">
+                    <h2 style="margin-bottom: 2rem;">Select User Role to Demo</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                        <button onclick="demoLogin('initiator')" style="padding: 1rem 2rem; background: #48bb78; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;">
+                            📝 Login as Initiator<br><small>Adebayo Uche</small>
+                        </button>
+                        <button onclick="demoLogin('supervisor')" style="padding: 1rem 2rem; background: #ed8936; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;">
+                            👔 Login as Supervisor<br><small>Aisha Muhammed</small>
+                        </button>
+                        <button onclick="demoLogin('administrator')" style="padding: 1rem 2rem; background: #e53e3e; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;">
+                            🔧 Login as Admin<br><small>Emeka Okonkwo</small>
+                        </button>
+                    </div>
+                    <p style="margin-top: 2rem; opacity: 0.8;">This is a demo. In the real system, you would login through the authentication page.</p>
+                </div>
+            `;
+            document.body.innerHTML = loginOptions;
+        }
+
+        function demoLogin(role) {
+            const users = {
+                'initiator': {
+                    name: 'Adebayo Uche',
+                    role: 'initiator',
+                    department: 'operations',
+                    email: 'adebayo.uche@haab.com'
+                },
+                'supervisor': {
+                    name: 'Aisha Muhammed',
+                    role: 'supervisor',
+                    department: 'operations',
+                    email: 'supervisor@haab.com'
+                },
+                'administrator': {
+                    name: 'Emeka Okonkwo',
+                    role: 'administrator',
+                    department: 'information-technology',
+                    email: 'admin@haab.com'
+                }
+            };
+
+            currentUser = users[role];
+            sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // Reload the page to show dashboard
+            location.reload();
+        }
+
+        function initializeDashboard(user) {
+            // Hide loading screen and show dashboard
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('dashboardContainer').style.display = 'flex';
+
+            // Update user profile
+            document.getElementById('userAvatar').textContent = user.name.split(' ').map(n => n[0]).join('');
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+            document.getElementById('userDepartment').textContent = formatDepartment(user.department);
+
+            // Setup navigation based on role
+            setupNavigation(user.role);
+
+            // Show appropriate dashboard
+            showPage(user.role + '-dashboard');
+
+            // Update welcome names
+            const nameElements = {
+                'initiator': 'initiator-name',
+                'supervisor': 'supervisor-name', 
+                'administrator': 'admin-name'
+            };
+            if (nameElements[user.role]) {
+                document.getElementById(nameElements[user.role]).textContent = user.name;
+            }
+        }
+
+        function formatDepartment(dept) {
+            return dept.split('-').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+        }
+
+        function setupNavigation(role) {
+            const navigationMenu = document.getElementById('navigationMenu');
+            let menuItems = '';
+
+            switch(role) {
+                case 'initiator':
+                    menuItems = `
+                        <li class="nav-item">
+                            <a class="nav-link active" onclick="showPage('initiator-dashboard')">
+                                <span class="nav-icon">📊</span> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="showPage('create-request')">
+                                <span class="nav-icon">➕</span> New Request
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="showPage('my-requests')">
+                                <span class="nav-icon">📝</span> My Requests
+                            </a>
+                        </li>
+                    `;
+                    break;
+                    
+                case 'supervisor':
+                    menuItems = `
+                        <li class="nav-item">
+                            <a class="nav-link active" onclick="showPage('supervisor-dashboard')">
+                                <span class="nav-icon">📊</span> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="showPage('pending-approvals')">
+                                <span class="nav-icon">⏳</span> Pending Reviews
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="showPage('team-reports')">
+                                <span class="nav-icon">📈</span> Team Reports
+                            </a>
+                        </li>
+                    `;
+                    break;
+                    
+                case 'administrator':
+                    menuItems = `
+                        <li class="nav-item">
+                            <a class="nav-link active" onclick="showPage('administrator-dashboard')">
+                                <span class="nav-icon">📊</span> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="showCreateUserModal()">
+                                <span class="nav-icon">👤</span> Create User
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="showPage('user-management')">
+                                <span class="nav-icon">👥</span> Manage Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="showPage('system-settings')">
+                                <span class="nav-icon">⚙️</span> System Settings
+                            </a>
+                        </li>
+                    `;
+                    break;
+            }
+
+            navigationMenu.innerHTML = menuItems;
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.dashboard-page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update navigation active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+        }
+
+        function showCreateUserModal() {
+            document.getElementById('createUserModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function approveRequest(requestId) {
+            if (confirm(`Are you sure you want to approve request ${requestId}?`)) {
+                alert(`✅ Request ${requestId} has been approved and will be processed in the core banking system.`);
+                // In real app, this would make an API call
+            }
+        }
+
+        function rejectRequest(requestId) {
+            const reason = prompt(`Please provide a reason for rejecting request ${requestId}:`);
+            if (reason && reason.trim()) {
+                alert(`❌ Request ${requestId} has been rejected.\nReason: ${reason}\n\nThe initiator will be notified to make corrections.`);
+                // In real app, this would make an API call
+            }
+        }
+
+        function reviewRequest(requestId) {
+            document.getElementById('reviewModalTitle').textContent = `Review Request - ${requestId}`;
+            
+            // Sample request details (in real app, fetch from API)
+            const requestDetails = `
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>Customer Information</h3>
+                    <p><strong>Name:</strong> Funmilayo Adepoju</p>
+                    <p><strong>Account:</strong> ACC-678901</p>
+                    <p><strong>Current Status:</strong> Active Customer</p>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>Requested Changes</h3>
+                    <p><strong>Update Type:</strong> Personal Details (Name Change)</p>
+                    <p><strong>Current Name:</strong> Funmilayo Adeoye</p>
+                    <p><strong>New Name:</strong> Funmilayo Adepoju</p>
+                    <p><strong>Reason:</strong> Marriage</p>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>Supporting Documents</h3>
+                    <p>✅ Marriage Certificate (verified)</p>
+                    <p>✅ Updated ID Card (verified)</p>
+                    <p>✅ Customer signed instruction</p>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>Validation Status</h3>
+                    <p>✅ All required documents present</p>
+                    <p>✅ Customer identity verified</p>
+                    <p>✅ Marriage certificate authentic</p>
+                </div>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button class="btn btn-success" onclick="approveRequest('${requestId}'); closeModal('reviewModal');">✓ Approve Request</button>
+                    <button class="btn btn-danger" onclick="rejectRequest('${requestId}'); closeModal('reviewModal');">✗ Reject Request</button>
+                    <button class="btn btn-secondary" onclick="closeModal('reviewModal')">Close</button>
+                </div>
+            `;
+            
+            document.getElementById('reviewModalContent').innerHTML = requestDetails;
+            document.getElementById('reviewModal').classList.add('active');
+        }
+
+        // Form handling for create user
+        document.getElementById('createUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newUser = {
+                name: document.getElementById('newUserName').value,
+                email: document.getElementById('newUserEmail').value,
+                phone: document.getElementById('newUserPhone').value,
+                role: document.getElementById('newUserRole').value,
+                department: document.getElementById('newUserDepartment').value
+            };
+            
+            alert(`✅ User created successfully!\n\nName: ${newUser.name}\nEmail: ${newUser.email}\nRole: ${newUser.role}\nDepartment: ${formatDepartment(newUser.department)}\n\nTemporary password has been sent to their email.`);
+            
+            // Reset form and close modal
+            this.reset();
+            closeModal('createUserModal');
+            
+            // In real app, this would make an API call to create the user
+        });
+
+        // Form handling for create request
+        document.getElementById('updateRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const requestData = {
+                accountNumber: document.getElementById('accountNumber').value,
+                customerName: document.getElementById('customerName').value,
+                updateType: document.getElementById('updateType').value,
+                priority: document.getElementById('priority').value,
+                instructionRef: document.getElementById('instructionRef').value,
+                comments: document.getElementById('comments').value
+            };
+            
+            // Generate request ID
+            const requestId = 'WF-2024-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            
+            alert(`✅ Request submitted successfully!\n\nRequest ID<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H.A.A-B Banking System - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .user-profile {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .user-info h3 {
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .user-info .role-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .user-info p {
+            color: #718096;
+            font-size: 0.875rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+        }
+
+        .dashboard-page {
+            display: none;
+        }
+
+        .dashboard-page.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header .breadcrumb {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card h2 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: #4a5568;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .request-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .request-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .request-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .request-card.pending { border-left-color: #ed8936; }
+        .request-card.approved { border-left-color: #38a169; }
+        .request-card.rejected { border-left-color: #e53e3e; }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            float: right;
+        }
+
+        .status-pending {
+            background: #fed7aa;
+            color: #c2410c;
+        }
+
+        .status-approved {
+            background: #bbf7d0;
+            color: #15803d;
+        }
+
+        .status-rejected {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .user-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .user-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .role-initiator { background: #bbf7d0; color: #15803d; }
+        .role-supervisor { background: #fed7aa; color: #c2410c; }
+        .role-administrator { background: #fecaca; color: #dc2626; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            margin: -1rem -1rem 0 0;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .request-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .welcome-card h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .welcome-card p {
+            color: #718096;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen" class="loading">
+        <h2>Loading Dashboard...</h2>
+        <p>Preparing your workspace...</p>
+    </div>
+
+    <div id="dashboardContainer" class="dashboard-container" style="display: none;">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="user-profile">
+                <div class="avatar" id="userAvatar">AU</div>
+                <div class="user-info">
+                    <h3 id="userName">Adebayo Uche</h3>
+                    <span class="role-badge" id="userRole">Initiator</span>
+                    <p id="userDepartment">Operations Department</p>
+                </div>
+            </div>
+
+            <ul class="nav-menu" id="navigationMenu">
+                <!-- Navigation will be populated based on user role -->
+            </ul>
+
+            <button class="logout-btn" onclick="logout()">
+                <span>🚪</span> Logout
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Initiator Dashboard -->
+            <div id="initiator-dashboard" class="dashboard-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Request Dashboard</h1>
+                        <div class="breadcrumb">Home > Request Management</div>
+                    </div>
+                </div>
+
+                <div class="welcome-card">
+                    <h2>Welcome, <span id="initiator-name">Initiator</span>!</h2>
+                    <p>Create and manage customer information update requests. Track your submissions and ensure all documentation is complete.</p>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" onclick="showPage('create-request')">
+                            ➕ New Request
+                        </button>
+                        <button class="btn btn-secondary" onclick="showPage('my-requests')">
+                            📝 My Requests
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">📝</span>
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Pending Requests</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">✅</span>
+                        <div class="stat-number">47</div>
+                        <div class="stat-label">Completed This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">⚠️</span>
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Needs Attention</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">📊</span>
+                        <div class="stat-number">94%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Recent Requests</h2>
+                    <div class="request-grid">
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>Address Update - WF-2024-156</h4>
+                                <span class="status-badge status-pending">Under Review</span>
+                            </div>
+                            <p><strong>Customer:</strong> Fatima Bello (ACC-123456)</p>
+                            <p><strong>Submitted:</strong> 3 hours ago</p>
+                            <p><strong>Reviewer:</strong> Kemi Adeyemi</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn btn-secondary">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="request-card approved">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>Phone Update - WF-2024-155</h4>
+                                <span class="status-badge status-approved">Completed</span>
+                            </div>
+                            <p><strong>Customer:</strong> Ibrahim Musa (ACC-789012)</p>
+                            <p><strong>Completed:</strong> Yesterday</p>
+                            <p><strong>Core Banking:</strong> ✓ Updated</p>
+                        </div>
+
+                        <div class="request-card rejected">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>Email Update - WF-2024-154</h4>
+                                <span class="status-badge status-rejected">Needs Revision</span>
+                            </div>
+                            <p><strong>Customer:</strong> Chioma Okoro (ACC-345678)</p>
+                            <p><strong>Issue:</strong> Missing documentation</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn btn-primary">Resubmit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supervisor Dashboard -->
+            <div id="supervisor-dashboard" class="dashboard-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Supervisor Dashboard</h1>
+                        <div class="breadcrumb">Home > Request Review</div>
+                    </div>
+                </div>
+
+                <div class="welcome-card">
+                    <h2>Welcome, <span id="supervisor-name">Supervisor</span>!</h2>
+                    <p>Review and process customer information update requests. Ensure data quality and compliance with banking regulations.</p>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" onclick="showPage('pending-approvals')">
+                            ⏳ Pending Reviews (12)
+                        </button>
+                        <button class="btn btn-secondary" onclick="showPage('team-reports')">
+                            📊 Team Reports
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">⏳</span>
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Awaiting Review</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">✅</span>
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Approved This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">⚡</span>
+                        <div class="stat-number">2.3</div>
+                        <div class="stat-label">Avg Review Time (hours)</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">📈</span>
+                        <div class="stat-number">96.8%</div>
+                        <div class="stat-label">Approval Rate</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Requests Awaiting Review</h2>
+                    <div class="request-grid">
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>Address Change - WF-2024-157</h4>
+                                <span class="status-badge status-pending">High Priority</span>
+                            </div>
+                            <p><strong>Customer:</strong> Amara Ezeugo (ACC-567890)</p>
+                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
+                            <p><strong>Submitted:</strong> 45 minutes ago</p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-success">✓ Approve</button>
+                                <button class="btn btn-danger">✗ Reject</button>
+                                <button class="btn btn-secondary">👁 Review</button>
+                            </div>
+                        </div>
+
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>Employment Info - WF-2024-156</h4>
+                                <span class="status-badge status-pending">Standard</span>
+                            </div>
+                            <p><strong>Customer:</strong> Yusuf Bello (ACC-234567)</p>
+                            <p><strong>Initiated by:</strong> Chioma Nwachukwu</p>
+                            <p><strong>Submitted:</strong> 2 hours ago</p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-success">✓ Approve</button>
+                                <button class="btn btn-danger">✗ Reject</button>
+                                <button class="btn btn-secondary">👁 Review</button>
+                            </div>
+                        </div>
+
+                        <div class="request-card pending">
+                            <div style="margin-bottom: 1rem;">
+                                <h4>Phone Update - WF-2024-155</h4>
+                                <span class="status-badge status-pending">Standard</span>
+                            </div>
+                            <p><strong>Customer:</strong> Blessing Ojo (ACC-345678)</p>
+                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
+                            <p><strong>Submitted:</strong> 4 hours ago</p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-success">✓ Approve</button>
+                                <button class="btn btn-danger">✗ Reject</button>
+                                <button class="btn btn-secondary">👁 Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Administrator Dashboard -->
+            <div id="administrator-dashboard" class="dashboard-page">
+                <div class="page-header">
+                    <div>
+                        <h1>System Administration</h1>
+                        <div class="breadcrumb">Home > System Management</div>
+                    </div>
+                </div>
+
+                <div class="welcome-card">
+                    <h2>Welcome, <span id="admin-name">Administrator</span>!</h2>
+                    <p>Manage users, roles, and system configurations. Maintain system security and operational efficiency.</p>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" onclick="showCreateUserModal()">
+                            👤 Create User
+                        </button>
+                        <button class="btn btn-secondary" onclick="showPage('system-settings')">
+                            ⚙️ System Settings
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">👥</span>
+                        <div class="stat-number">47</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🔐</span>
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">User Roles</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">📈</span>
+                        <div class="stat-number">1,847</div>
+                        <div class="stat-label">Total Requests Processed</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🎯</span>
+                        <div class="stat-number">98.2%</div>
+                        <div class="stat-label">System Uptime</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>User Management</h2>
+                    <div style="margin-bottom: 1.5rem;">
+                        <button class="btn btn-primary" onclick="showCreateUserModal()">+ Add New User</button>
+                    </div>
+                    
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Adebayo Uche</td>
+                                <td>adebayo.uche@haab.com</td>
+                                <td><span class="status-badge role-initiator">Initiator</span></td>
+                                <td>Operations</td>
+                                <td>✅ Active</td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Kemi Adeyemi</td>
+                                <td>kemi.adeyemi@haab.com</td>
+                                <td><span class="status-badge role-supervisor">Supervisor</span></td>
+                                <td>Operations</td>
+                                <td>✅ Active</td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Chioma Nwachukwu</td>
+                                <td>chioma.nwachukwu@haab.com</td>
+                                <td><span class="status-badge role-initiator">Initiator</span></td>
+                                <td>Operations</td>
+                                <td>
