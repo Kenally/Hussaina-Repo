@@ -3,648 +3,1276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H.A.A-B Banking System - Dashboard</title>
+    <title>H.A.A-B Banking System - Login</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh}.dashboard-container{display:flex;min-height:100vh}.sidebar{width:280px;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-right:1px solid rgba(255,255,255,.2);box-shadow:4px 0 20px rgba(0,0,0,.1);padding:2rem;position:fixed;height:100vh;overflow-y:auto;z-index:100}.main-content{margin-left:280px;flex:1;padding:2rem;overflow-y:auto}.user-profile{text-align:center;margin-bottom:2rem;padding:1.5rem;background:linear-gradient(135deg,rgba(102,126,234,.1),rgba(118,75,162,.1));border-radius:15px;border:1px solid rgba(102,126,234,.2)}.avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.5rem;margin:0 auto 1rem;box-shadow:0 4px 15px rgba(102,126,234,.3)}.user-info h3{color:#2d3748;margin-bottom:.25rem;font-size:1.1rem}.user-info .role-badge{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:.25rem .75rem;border-radius:15px;font-size:.75rem;font-weight:600;text-transform:uppercase;margin-bottom:.5rem;display:inline-block}.user-info p{color:#718096;font-size:.875rem}.nav-menu{list-style:none;margin-top:1rem}.nav-item{margin-bottom:.5rem}.nav-link{display:flex;align-items:center;padding:1rem;color:#4a5568;text-decoration:none;border-radius:12px;transition:all .3s ease;cursor:pointer;font-weight:500}.nav-link:hover{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;transform:translateX(5px);box-shadow:0 4px 15px rgba(102,126,234,.4)}.nav-link.active{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;box-shadow:0 4px 15px rgba(102,126,234,.4)}.nav-icon{margin-right:1rem;font-size:1.2rem}.logout-btn{position:absolute;bottom:2rem;left:2rem;right:2rem;background:linear-gradient(135deg,#f56565,#e53e3e);color:#fff;border:none;padding:.75rem;border-radius:10px;cursor:pointer;font-weight:600;transition:all .3s ease}.logout-btn:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(245,101,101,.4)}.dashboard-page{display:none}.dashboard-page.active{display:block;animation:fadeInUp .5s ease}@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem}.page-header h1{color:#fff;font-size:2.5rem;font-weight:700;text-shadow:0 2px 4px rgba(0,0,0,.1)}.page-header .breadcrumb{color:rgba(255,255,255,.8);font-size:.875rem}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-bottom:2rem}.stat-card{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-radius:15px;padding:2rem;border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 32px rgba(0,0,0,.1);text-align:center;transition:all .3s ease}.stat-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.15)}.stat-icon{font-size:3rem;margin-bottom:1rem;display:block}.stat-number{font-size:2.5rem;font-weight:700;color:#667eea;margin-bottom:.5rem}.stat-label{color:#718096;font-weight:600;font-size:.875rem;text-transform:uppercase}.card{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-radius:20px;padding:2rem;margin-bottom:2rem;box-shadow:0 8px 32px rgba(0,0,0,.1);border:1px solid rgba(255,255,255,.2)}.card h2{color:#2d3748;margin-bottom:1.5rem;font-size:1.5rem}.btn{padding:.75rem 1.5rem;border:none;border-radius:10px;cursor:pointer;font-weight:600;transition:all .3s ease;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-size:.875rem}.btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;box-shadow:0 4px 15px rgba(102,126,234,.4)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(102,126,234,.6)}.btn-success{background:linear-gradient(135deg,#48bb78,#38a169);color:#fff}.btn-danger{background:linear-gradient(135deg,#f56565,#e53e3e);color:#fff}.btn-secondary{background:rgba(255,255,255,.8);color:#4a5568;border:1px solid rgba(102,126,234,.3)}.request-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}.request-card{background:rgba(255,255,255,.9);border-radius:15px;padding:1.5rem;border-left:4px solid;transition:all .3s ease;cursor:pointer}.request-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,.15)}.request-card.pending{border-left-color:#ed8936}.request-card.approved{border-left-color:#38a169}.request-card.rejected{border-left-color:#e53e3e}.status-badge{padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:600;text-transform:uppercase;float:right}.status-pending{background:#fed7aa;color:#c2410c}.status-approved{background:#bbf7d0;color:#15803d}.status-rejected{background:#fecaca;color:#dc2626}.form-group{margin-bottom:1.5rem}.form-label{display:block;margin-bottom:.5rem;color:#4a5568;font-weight:600}.form-control{width:100%;padding:.75rem;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;transition:border-color .3s ease}.form-control:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,.1)}.user-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.1)}.user-table th{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:1rem;text-align:left;font-weight:600}.user-table td{padding:1rem;border-bottom:1px solid #e2e8f0}.user-table tr:hover{background:rgba(102,126,234,.05)}.role-initiator{background:#bbf7d0;color:#15803d}.role-supervisor{background:#fed7aa;color:#c2410c}.role-administrator{background:#fecaca;color:#dc2626}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);z-index:1000}.modal.active{display:flex;align-items:center;justify-content:center}.modal-content{background:#fff;border-radius:20px;padding:2rem;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 40px rgba(0,0,0,.2)}.close{float:right;font-size:1.5rem;cursor:pointer;color:#999;margin:-1rem -1rem 0 0}.close:hover{color:#333}@media (max-width:768px){.sidebar{width:100%;height:auto;position:static}.main-content{margin-left:0}.dashboard-container{flex-direction:column}.stats-grid,.request-grid{grid-template-columns:1fr}}.welcome-card{background:linear-gradient(135deg,rgba(102,126,234,.1),rgba(118,75,162,.1));border:2px solid rgba(102,126,234,.2);border-radius:20px;padding:2rem;margin-bottom:2rem;text-align:center}.welcome-card h2{color:#2d3748;margin-bottom:1rem;font-size:2rem}.welcome-card p{color:#718096;font-size:1.1rem;line-height:1.6}.quick-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem}.loading{text-align:center;padding:3rem;color:#fff;font-size:1.2rem}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .auth-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            color: #718096;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 0.25rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            background: transparent;
+            color: #4a5568;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .form-container {
+            position: relative;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        .form-control.error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.1);
+        }
+
+        .form-control.success {
+            border-color: #38a169;
+            box-shadow: 0 0 0 4px rgba(56, 161, 105, 0.1);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #718096;
+            font-size: 1.2rem;
+        }
+
+        .password-toggle:hover {
+            color: #4a5568;
+        }
+
+        .validation-message {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .validation-message.error {
+            color: #e53e3e;
+        }
+
+        .validation-message.success {
+            color: #38a169;
+        }
+
+        .password-strength {
+            margin-top: 0.5rem;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-weak { background: #e53e3e; width: 25%; }
+        .strength-fair { background: #ed8936; width: 50%; }
+        .strength-good { background: #38a169; width: 75%; }
+        .strength-strong { background: #38a169; width: 100%; }
+
+        .strength-text {
+            font-size: 0.75rem;
+            color: #718096;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .role-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .role-option {
+            position: relative;
+        }
+
+        .role-option input[type="radio"] {
+            display: none;
+        }
+
+        .role-option label {
+            display: block;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .role-option input[type="radio"]:checked + label {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .department-select {
+            margin-top: 1rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #f0fff4, #e6fffa);
+            border: 1px solid #9ae6b4;
+            color: #22543d;
+        }
+
+        .alert-error {
+            background: linear-gradient(135deg, #fed7d7, #fbb6ce);
+            border: 1px solid #fc8181;
+            color: #742a2a;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, #ebf8ff, #e6fffa);
+            border: 1px solid #81c9e3;
+            color: #2a4365;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .forgot-password a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-icon.success {
+            color: #38a169;
+        }
+
+        .modal-icon.error {
+            color: #e53e3e;
+        }
+
+        .modal h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal p {
+            color: #718096;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-modal {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-modal.primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-modal.secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .role-selection {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="loadingScreen" class="loading">
-        <h2>Loading Dashboard...</h2>
-        <p>Preparing your workspace...</p>
-    </div>
+    <div class="auth-container">
+        <div class="logo">
+            <h1>H.A.A-B</h1>
+            <p>Banking Workflow System</p>
+        </div>
 
-    <div id="dashboardContainer" class="dashboard-container" style="display:none">
-        <nav class="sidebar">
-            <div class="user-profile">
-                <div class="avatar" id="userAvatar">AU</div>
-                <div class="user-info">
-                    <h3 id="userName">Adebayo Uche</h3>
-                    <span class="role-badge" id="userRole">Initiator</span>
-                    <p id="userDepartment">Operations Department</p>
-                </div>
-            </div>
+        <div class="auth-tabs">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="register">Create Account</button>
+        </div>
 
-            <ul class="nav-menu" id="navigationMenu"></ul>
-
-            <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-        </nav>
-
-        <main class="main-content">
-            <div id="initiator-dashboard" class="dashboard-page">
-                <div class="page-header">
-                    <div>
-                        <h1>Request Dashboard</h1>
-                        <div class="breadcrumb">Home > Request Management</div>
-                    </div>
-                </div>
-
-                <div class="welcome-card">
-                    <h2>Welcome, <span id="initiator-name">Initiator</span>!</h2>
-                    <p>Create and manage customer information update requests. Track your submissions and ensure all documentation is complete.</p>
-                    <div class="quick-actions">
-                        <button class="btn btn-primary" onclick="showPage('create-request')">➕ New Request</button>
-                        <button class="btn btn-secondary" onclick="showPage('my-requests')">📝 My Requests</button>
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card"><span class="stat-icon">📝</span><div class="stat-number">8</div><div class="stat-label">Pending Requests</div></div>
-                    <div class="stat-card"><span class="stat-icon">✅</span><div class="stat-number">47</div><div class="stat-label">Completed This Month</div></div>
-                    <div class="stat-card"><span class="stat-icon">⚠️</span><div class="stat-number">2</div><div class="stat-label">Needs Attention</div></div>
-                    <div class="stat-card"><span class="stat-icon">📊</span><div class="stat-number">94%</div><div class="stat-label">Success Rate</div></div>
-                </div>
-
-                <div class="card">
-                    <h2>Recent Requests</h2>
-                    <div class="request-grid">
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>Address Update - WF-2024-156</h4><span class="status-badge status-pending">Under Review</span></div>
-                            <p><strong>Customer:</strong> Fatima Bello (ACC-123456)</p>
-                            <p><strong>Submitted:</strong> 3 hours ago</p>
-                            <p><strong>Reviewer:</strong> Kemi Adeyemi</p>
-                            <div style="margin-top:1rem"><button class="btn btn-secondary">View Details</button></div>
-                        </div>
-                        <div class="request-card approved">
-                            <div style="margin-bottom:1rem"><h4>Phone Update - WF-2024-155</h4><span class="status-badge status-approved">Completed</span></div>
-                            <p><strong>Customer:</strong> Ibrahim Musa (ACC-789012)</p>
-                            <p><strong>Completed:</strong> Yesterday</p>
-                            <p><strong>Core Banking:</strong> ✓ Updated</p>
-                        </div>
-                        <div class="request-card rejected">
-                            <div style="margin-bottom:1rem"><h4>Email Update - WF-2024-154</h4><span class="status-badge status-rejected">Needs Revision</span></div>
-                            <p><strong>Customer:</strong> Chioma Okoro (ACC-345678)</p>
-                            <p><strong>Issue:</strong> Missing documentation</p>
-                            <div style="margin-top:1rem"><button class="btn btn-primary">Resubmit</button></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="supervisor-dashboard" class="dashboard-page">
-                <div class="page-header">
-                    <div>
-                        <h1>Supervisor Dashboard</h1>
-                        <div class="breadcrumb">Home > Request Review</div>
-                    </div>
-                </div>
-
-                <div class="welcome-card">
-                    <h2>Welcome, <span id="supervisor-name">Supervisor</span>!</h2>
-                    <p>Review and process customer information update requests. Ensure data quality and compliance with banking regulations.</p>
-                    <div class="quick-actions">
-                        <button class="btn btn-primary" onclick="showPage('pending-approvals')">⏳ Pending Reviews (12)</button>
-                        <button class="btn btn-secondary" onclick="showPage('team-reports')">📊 Team Reports</button>
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card"><span class="stat-icon">⏳</span><div class="stat-number">12</div><div class="stat-label">Awaiting Review</div></div>
-                    <div class="stat-card"><span class="stat-icon">✅</span><div class="stat-number">156</div><div class="stat-label">Approved This Month</div></div>
-                    <div class="stat-card"><span class="stat-icon">⚡</span><div class="stat-number">2.3</div><div class="stat-label">Avg Review Time (hours)</div></div>
-                    <div class="stat-card"><span class="stat-icon">📈</span><div class="stat-number">96.8%</div><div class="stat-label">Approval Rate</div></div>
-                </div>
-
-                <div class="card">
-                    <h2>Requests Awaiting Review</h2>
-                    <div class="request-grid">
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>Address Change - WF-2024-157</h4><span class="status-badge status-pending">High Priority</span></div>
-                            <p><strong>Customer:</strong> Amara Ezeugo (ACC-567890)</p>
-                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
-                            <p><strong>Submitted:</strong> 45 minutes ago</p>
-                            <div style="margin-top:1rem;display:flex;gap:.5rem">
-                                <button class="btn btn-success">✓ Approve</button>
-                                <button class="btn btn-danger">✗ Reject</button>
-                                <button class="btn btn-secondary">👁 Review</button>
-                            </div>
-                        </div>
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>Employment Info - WF-2024-156</h4><span class="status-badge status-pending">Standard</span></div>
-                            <p><strong>Customer:</strong> Yusuf Bello (ACC-234567)</p>
-                            <p><strong>Initiated by:</strong> Chioma Nwachukwu</p>
-                            <p><strong>Submitted:</strong> 2 hours ago</p>
-                            <div style="margin-top:1rem;display:flex;gap:.5rem">
-                                <button class="btn btn-success">✓ Approve</button>
-                                <button class="btn btn-danger">✗ Reject</button>
-                                <button class="btn btn-secondary">👁 Review</button>
-                            </div>
-                        </div>
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>Phone Update - WF-2024-155</h4><span class="status-badge status-pending">Standard</span></div>
-                            <p><strong>Customer:</strong> Blessing Ojo (ACC-345678)</p>
-                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
-                            <p><strong>Submitted:</strong> 4 hours ago</p>
-                            <div style="margin-top:1rem;display:flex;gap:.5rem">
-                                <button class="btn btn-success">✓ Approve</button>
-                                <button class="btn btn-danger">✗ Reject</button>
-                                <button class="btn btn-secondary">👁 Review</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="administrator-dashboard" class="dashboard-page">
-                <div class="page-header">
-                    <div>
-                        <h1>System Administration</h1>
-                        <div class="breadcrumb">Home > System Management</div>
-                    </div>
-                </div>
-
-                <div class="welcome-card">
-                    <h2>Welcome, <span id="admin-name">Administrator</span>!</h2>
-                    <p>Manage users, roles, and system configurations. Maintain system security and operational efficiency.</p>
-                    <div class="quick-actions">
-                        <button class="btn btn-primary" onclick="showCreateUserModal()">👤 Create User</button>
-                        <button class="btn btn-secondary" onclick="showPage('system-settings')">⚙️ System Settings</button>
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card"><span class="stat-icon">👥</span><div class="stat-number">47</div><div class="stat-label">Active Users</div></div>
-                    <div class="stat-card"><span class="stat-icon">🔐</span><div class="stat-number">3</div><div class="stat-label">User Roles</div></div>
-                    <div class="stat-card"><span class="stat-icon">📈</span><div class="stat-number">1,847</div><div class="stat-label">Total Requests Processed</div></div>
-                    <div class="stat-card"><span class="stat-icon">🎯</span><div class="stat-number">98.2%</div><div class="stat-label">System Uptime</div></div>
-                </div>
-
-                <div class="card">
-                    <h2>User Management</h2>
-                    <div style="margin-bottom:1.5rem"><button class="btn btn-primary" onclick="showCreateUserModal()">+ Add New User</button></div>
-                    <table class="user-table">
-                        <thead>
-                            <tr><th>Name</th><th>Email</th><th>Role</th><th>Department</th><th>Status</th><th>Actions</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Adebayo Uche</td>
-                                <td>adebayo.uche@haab.com</td>
-                                <td><span class="status-badge role-initiator">Initiator</span></td>
-                                <td>Operations</td>
-                                <td>✅ Active</td>
-                                <td><button class="btn btn-secondary" style="padding:.25rem .5rem;font-size:.75rem">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>Kemi Adeyemi</td>
-                                <td>kemi.adeyemi@haab.com</td>
-                                <td><span class="status-badge role-supervisor">Supervisor</span></td>
-                                <td>Operations</td>
-                                <td>✅ Active</td>
-                                <td><button class="btn btn-secondary" style="padding:.25rem .5rem;font-size:.75rem">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>Chioma Nwachukwu</td>
-                                <td>chioma.nwachukwu@haab.com</td>
-                                <td><span class="status-badge role-initiator">Initiator</span></td>
-                                <td>Operations</td>
-                                <td>✅ Active</td>
-                                <td><button class="btn btn-secondary" style="padding:.25rem .5rem;font-size:.75rem">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>Emeka Okonkwo</td>
-                                <td>admin@haab.com</td>
-                                <td><span class="status-badge role-administrator">Administrator</span></td>
-                                <td>Information Technology</td>
-                                <td>✅ Active</td>
-                                <td><button class="btn btn-secondary" style="padding:.25rem .5rem;font-size:.75rem">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>Aisha Muhammed</td>
-                                <td>supervisor@haab.com</td>
-                                <td><span class="status-badge role-supervisor">Supervisor</span></td>
-                                <td>Operations</td>
-                                <td>✅ Active</td>
-                                <td><button class="btn btn-secondary" style="padding:.25rem .5rem;font-size:.75rem">Edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="card">
-                    <h2>Recent System Activity</h2>
-                    <div style="space-y:1rem">
-                        <div style="padding:1rem;background:rgba(102,126,234,.05);border-radius:8px;margin-bottom:1rem">
-                            <strong>New User Created:</strong> Olumide Adebayo - Initiator Role
-                            <div style="color:#718096;font-size:.875rem;margin-top:.25rem">2 hours ago by Emeka Okonkwo</div>
-                        </div>
-                        <div style="padding:1rem;background:rgba(72,187,120,.05);border-radius:8px;margin-bottom:1rem">
-                            <strong>System Update:</strong> Validation rules updated for address changes
-                            <div style="color:#718096;font-size:.875rem;margin-top:.25rem">5 hours ago by System</div>
-                        </div>
-                        <div style="padding:1rem;background:rgba(237,137,54,.05);border-radius:8px;margin-bottom:1rem">
-                            <strong>Role Updated:</strong> Kemi Adeyemi promoted to Senior Supervisor
-                            <div style="color:#718096;font-size:.875rem;margin-top:.25rem">1 day ago by Emeka Okonkwo</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="create-request" class="dashboard-page">
-                <div class="page-header">
-                    <div>
-                        <h1>Create New Request</h1>
-                        <div class="breadcrumb">Home > Request Management > New Request</div>
-                    </div>
-                    <button class="btn btn-secondary" onclick="showPage('initiator-dashboard')">← Back to Dashboard</button>
-                </div>
-
-                <div class="card">
-                    <h2>Customer Information Update Request</h2>
-                    <form id="updateRequestForm">
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-                            <div class="form-group">
-                                <label class="form-label">Customer Account Number *</label>
-                                <input type="text" class="form-control" id="accountNumber" placeholder="ACC-XXXXXX" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Customer Name</label>
-                                <input type="text" class="form-control" id="customerName" readonly placeholder="Auto-filled after account lookup">
-                            </div>
-                        </div>
-
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-                            <div class="form-group">
-                                <label class="form-label">Update Type *</label>
-                                <select class="form-control" id="updateType" required>
-                                    <option value="">Select Update Type</option>
-                                    <option value="address">Address Change</option>
-                                    <option value="phone">Phone Number Update</option>
-                                    <option value="email">Email Address Update</option>
-                                    <option value="employment">Employment Information</option>
-                                    <option value="personal">Personal Details</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Priority Level *</label>
-                                <select class="form-control" id="priority" required>
-                                    <option value="standard">Standard</option>
-                                    <option value="high">High</option>
-                                    <option value="urgent">Urgent</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div id="updateFields" style="margin:1.5rem 0"></div>
-
-                        <div class="form-group">
-                            <label class="form-label">Customer Instruction Reference *</label>
-                            <input type="text" class="form-control" id="instructionRef" placeholder="e.g., Email dated 2024-08-15, Phone call reference #12345" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Supporting Documents</label>
-                            <input type="file" class="form-control" id="documents" multiple>
-                            <small style="color:#718096;font-size:.875rem;margin-top:.5rem;display:block">Upload relevant documents (ID copy, proof of address, etc.)</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Additional Comments</label>
-                            <textarea class="form-control" id="comments" rows="4" placeholder="Any additional information or special instructions..."></textarea>
-                        </div>
-
-                        <div style="display:flex;gap:1rem;margin-top:2rem">
-                            <button type="submit" class="btn btn-primary">📝 Submit Request</button>
-                            <button type="button" class="btn btn-secondary" onclick="document.getElementById('updateRequestForm').reset()">🔄 Clear Form</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div id="my-requests" class="dashboard-page">
-                <div class="page-header">
-                    <div>
-                        <h1>My Requests</h1>
-                        <div class="breadcrumb">Home > Request Management > My Requests</div>
-                    </div>
-                    <button class="btn btn-primary" onclick="showPage('create-request')">+ New Request</button>
-                </div>
-
-                <div class="card">
-                    <h2>Request History</h2>
-                    <div class="request-grid">
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>WF-2024-156: Address Update</h4><span class="status-badge status-pending">Under Review</span></div>
-                            <p><strong>Customer:</strong> Fatima Bello (ACC-123456)</p>
-                            <p><strong>Submitted:</strong> 3 hours ago</p>
-                            <p><strong>Reviewer:</strong> Kemi Adeyemi</p>
-                            <p><strong>Priority:</strong> High</p>
-                            <div style="margin-top:1rem"><button class="btn btn-secondary">View Details</button></div>
-                        </div>
-                        <div class="request-card approved">
-                            <div style="margin-bottom:1rem"><h4>WF-2024-155: Phone Update</h4><span class="status-badge status-approved">Completed</span></div>
-                            <p><strong>Customer:</strong> Ibrahim Musa (ACC-789012)</p>
-                            <p><strong>Completed:</strong> Yesterday</p>
-                            <p><strong>Approved by:</strong> Aisha Muhammed</p>
-                            <p><strong>Core Banking:</strong> ✅ Updated</p>
-                        </div>
-                        <div class="request-card rejected">
-                            <div style="margin-bottom:1rem"><h4>WF-2024-154: Email Update</h4><span class="status-badge status-rejected">Needs Revision</span></div>
-                            <p><strong>Customer:</strong> Chioma Okoro (ACC-345678)</p>
-                            <p><strong>Rejected:</strong> 2 days ago</p>
-                            <p><strong>Reason:</strong> Missing supporting documentation</p>
-                            <div style="margin-top:1rem;display:flex;gap:0.5rem">
-                                <button class="btn btn-primary">📝 Resubmit</button>
-                                <button class="btn btn-secondary">👁 View Feedback</button>
-                            </div>
-                        </div>
-                        <div class="request-card approved">
-                            <div style="margin-bottom:1rem"><h4>WF-2024-153: Employment Info</h4><span class="status-badge status-approved">Completed</span></div>
-                            <p><strong>Customer:</strong> Adebola Taiwo (ACC-456789)</p>
-                            <p><strong>Completed:</strong> 3 days ago</p>
-                            <p><strong>Approved by:</strong> Kemi Adeyemi</p>
-                            <p><strong>Processing Time:</strong> 4 hours</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="pending-approvals" class="dashboard-page">
-                <div class="page-header">
-                    <div>
-                        <h1>Pending Approvals</h1>
-                        <div class="breadcrumb">Home > Request Review > Pending</div>
-                    </div>
-                    <div style="display:flex;gap:1rem">
-                        <button class="btn btn-secondary">📊 Generate Report</button>
-                        <button class="btn btn-secondary">🔍 Filter Requests</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Requests Awaiting Your Review</h2>
-                    <div class="request-grid">
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>WF-2024-158: Personal Details Update</h4><span class="status-badge status-pending">High Priority</span></div>
-                            <p><strong>Customer:</strong> Funmilayo Adepoju (ACC-678901)</p>
-                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
-                            <p><strong>Submitted:</strong> 30 minutes ago</p>
-                            <p><strong>Type:</strong> Name Change (Marriage)</p>
-                            <p><strong>Documents:</strong> ✅ Marriage Certificate, ✅ ID Copy</p>
-                            <div style="margin-top:1rem;display:flex;gap:0.5rem">
-                                <button class="btn btn-success" onclick="approveRequest('WF-2024-158')">✓ Approve</button>
-                                <button class="btn btn-danger" onclick="rejectRequest('WF-2024-158')">✗ Reject</button>
-                                <button class="btn btn-secondary" onclick="reviewRequest('WF-2024-158')">👁 Review Details</button>
-                            </div>
-                        </div>
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>WF-2024-157: Address Change</h4><span class="status-badge status-pending">Standard</span></div>
-                            <p><strong>Customer:</strong> Amara Ezeugo (ACC-567890)</p>
-                            <p><strong>Initiated by:</strong> Chioma Nwachukwu</p>
-                            <p><strong>Submitted:</strong> 1 hour ago</p>
-                            <p><strong>Type:</strong> Residential Address</p>
-                            <p><strong>Documents:</strong> ✅ Utility Bill, ❌ Landlord Letter</p>
-                            <div style="margin-top:1rem;display:flex;gap:0.5rem">
-                                <button class="btn btn-success" onclick="approveRequest('WF-2024-157')">✓ Approve</button>
-                                <button class="btn btn-danger" onclick="rejectRequest('WF-2024-157')">✗ Reject</button>
-                                <button class="btn btn-secondary" onclick="reviewRequest('WF-2024-157')">👁 Review Details</button>
-                            </div>
-                        </div>
-                        <div class="request-card pending">
-                            <div style="margin-bottom:1rem"><h4>WF-2024-156: Employment Update</h4><span class="status-badge status-pending">Standard</span></div>
-                            <p><strong>Customer:</strong> Yusuf Bello (ACC-234567)</p>
-                            <p><strong>Initiated by:</strong> Adebayo Uche</p>
-                            <p><strong>Submitted:</strong> 2 hours ago</p>
-                            <p><strong>Type:</strong> New Employment Details</p>
-                            <p><strong>Documents:</strong> ✅ Employment Letter, ✅ Salary Certificate</p>
-                            <div style="margin-top:1rem;display:flex;gap:0.5rem">
-                                <button class="btn btn-success" onclick="approveRequest('WF-2024-156')">✓ Approve</button>
-                                <button class="btn btn-danger" onclick="rejectRequest('WF-2024-156')">✗ Reject</button>
-                                <button class="btn btn-secondary" onclick="reviewRequest('WF-2024-156')">👁 Review Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div id="createUserModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('createUserModal')">&times;</span>
-            <h2>Create New User</h2>
-            <form id="createUserForm" style="margin-top:1.5rem">
+        <!-- Login Form -->
+        <div id="login-form" class="auth-form active">
+            <form id="loginForm">
                 <div class="form-group">
-                    <label class="form-label">Full Name *</label>
-                    <input type="text" class="form-control" id="newUserName" required>
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                    <div class="validation-message" id="loginEmailError"></div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-label">Email Address *</label>
-                    <input type="email" class="form-control" id="newUserEmail" required>
+                    <label class="form-label">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-control" id="loginPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">👁</button>
+                    </div>
+                    <div class="validation-message" id="loginPasswordError"></div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Phone Number *</label>
-                    <input type="tel" class="form-control" id="newUserPhone" placeholder="+234-XXX-XXX-XXXX" required>
+
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <span class="loading-spinner" id="loginSpinner"></span>
+                    <span id="loginBtnText">Login</span>
+                </button>
+
+                <div class="forgot-password">
+                    <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
                 </div>
+            </form>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register-form" class="auth-form">
+            <form id="registerForm">
                 <div class="form-group">
-                    <label class="form-label">Role *</label>
-                    <select class="form-control" id="newUserRole" required>
-                        <option value="">Select Role</option>
-                        <option value="initiator">Initiator</option>
-                        <option value="supervisor">Supervisor</option>
-                        <option value="administrator">Administrator</option>
-                    </select>
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="registerName" required>
+                    <div class="validation-message" id="registerNameError"></div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-label">Department *</label>
-                    <select class="form-control" id="newUserDepartment" required>
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="registerEmail" required>
+                    <div class="validation-message" id="registerEmailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="registerPhone" placeholder="+234-XXX-XXX-XXXX" required>
+                    <div class="validation-message" id="registerPhoneError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-control" id="registerPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">👁</button>
+                    </div>
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <div class="strength-text">
+                            <span id="strengthText">Enter password</span>
+                            <span id="strengthRequirements">8+ chars, numbers, symbols</span>
+                        </div>
+                    </div>
+                    <div class="validation-message" id="registerPasswordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">👁</button>
+                    </div>
+                    <div class="validation-message" id="confirmPasswordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Role</label>
+                    <div class="role-selection">
+                        <div class="role-option">
+                            <input type="radio" id="roleInitiator" name="role" value="initiator" required>
+                            <label for="roleInitiator">Initiator</label>
+                        </div>
+                        <div class="role-option">
+                            <input type="radio" id="roleSupervisor" name="role" value="supervisor">
+                            <label for="roleSupervisor">Supervisor</label>
+                        </div>
+                        <div class="role-option">
+                            <input type="radio" id="roleAdmin" name="role" value="admin">
+                            <label for="roleAdmin">Admin</label>
+                        </div>
+                    </div>
+                    <div class="validation-message" id="roleError"></div>
+                </div>
+
+                <div class="form-group department-select">
+                    <label class="form-label">Department</label>
+                    <select class="form-control" id="registerDepartment" required>
                         <option value="">Select Department</option>
                         <option value="operations">Operations</option>
                         <option value="user-access-management">User Access Management</option>
                         <option value="information-technology">Information Technology</option>
                     </select>
+                    <div class="validation-message" id="departmentError"></div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Temporary Password *</label>
-                    <input type="password" class="form-control" id="newUserPassword" required>
-                    <small style="color:#718096;font-size:.875rem">User will be required to change password on first login</small>
-                </div>
-                <div style="margin-top:2rem;display:flex;gap:1rem">
-                    <button type="submit" class="btn btn-primary">Create User</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal('createUserModal')">Cancel</button>
-                </div>
+
+                <button type="submit" class="btn btn-primary" id="registerBtn">
+                    <span class="loading-spinner" id="registerSpinner"></span>
+                    <span id="registerBtnText">Create Account</span>
+                </button>
             </form>
         </div>
     </div>
 
-    <div id="reviewModal" class="modal">
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('reviewModal')">&times;</span>
-            <h2 id="reviewModalTitle">Review Request - WF-2024-XXX</h2>
-            <div id="reviewModalContent" style="margin-top:1.5rem"></div>
+            <div class="modal-icon success">✅</div>
+            <h3 id="successTitle">Success!</h3>
+            <p id="successMessage">Your operation completed successfully.</p>
+            <div class="modal-buttons">
+                <button class="btn-modal primary" onclick="handleSuccessAction()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon error">❌</div>
+            <h3>Login Failed</h3>
+            <p id="errorMessage">Invalid credentials. Please check your email and password.</p>
+            <div class="modal-buttons">
+                <button class="btn-modal primary" onclick="closeModal('errorModal')">Try Again</button>
+                <button class="btn-modal secondary" onclick="showForgotPassword()">Forgot Password?</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon" style="color: #667eea;">🔑</div>
+            <h3>Reset Password</h3>
+            <p>Enter your email address to receive password reset instructions.</p>
+            <div class="form-group" style="text-align: left; margin-bottom: 1.5rem;">
+                <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal primary" onclick="sendResetEmail()">Send Reset Link</button>
+                <button class="btn-modal secondary" onclick="closeModal('forgotPasswordModal')">Cancel</button>
+            </div>
         </div>
     </div>
 
     <script>
-        let currentUser=null;
-        document.addEventListener('DOMContentLoaded',function(){
-            const userData=sessionStorage.getItem('currentUser');
-            if(userData){currentUser=JSON.parse(userData);initializeDashboard(currentUser)}else{showLoginDemo()}
+        // Pre-registered users for demo (in real app, this would be in a database)
+        const registeredUsers = {
+            'adebayo.uche@haab.com': {
+                name: 'Adebayo Uche',
+                password: 'Admin123!',
+                role: 'initiator',
+                department: 'operations',
+                phone: '+234-803-123-4567'
+            },
+            'kemi.adeyemi@haab.com': {
+                name: 'Kemi Adeyemi',
+                password: 'Super123!',
+                role: 'supervisor',
+                department: 'operations',
+                phone: '+234-811-987-6543'
+            },
+            'chioma.nwachukwu@haab.com': {
+                name: 'Chioma Nwachukwu',
+                password: 'Staff123!',
+                role: 'initiator',
+                department: 'operations',
+                phone: '+234-705-456-7890'
+            }
+        };
+
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tab = this.getAttribute('data-tab');
+                
+                // Update active tab
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding form
+                document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+                document.getElementById(tab + '-form').classList.add('active');
+                
+                // Clear any error messages
+                clearAllErrors();
+            });
         });
-        function showLoginDemo(){
-            document.body.innerHTML=`
-                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;text-align:center">
-                    <h2 style="margin-bottom:2rem">Select User Role to Demo</h2>
-                    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
-                        <button onclick="demoLogin('initiator')" style="padding:1rem 2rem;background:#48bb78;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600">
-                            📝 Login as Initiator<br><small>Adebayo Uche</small>
-                        </button>
-                        <button onclick="demoLogin('supervisor')" style="padding:1rem 2rem;background:#ed8936;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600">
-                            👔 Login as Supervisor<br><small>Aisha Muhammed</small>
-                        </button>
-                        <button onclick="demoLogin('administrator')" style="padding:1rem 2rem;background:#e53e3e;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600">
-                            🔧 Login as Admin<br><small>Emeka Okonkwo</small>
-                        </button>
-                    </div>
-                    <p style="margin-top:2rem;opacity:.8">This is a demo. In the real system, you would login through the authentication page.</p>
-                </div>
-            `;
+
+        // Password visibility toggle
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const btn = input.nextElementSibling;
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁';
+            }
         }
-        function demoLogin(role){
-            const users={
-                'initiator':{name:'Adebayo Uche',role:'initiator',department:'operations',email:'adebayo.uche@haab.com'},
-                'supervisor':{name:'Aisha Muhammed',role:'supervisor',department:'operations',email:'supervisor@haab.com'},
-                'administrator':{name:'Emeka Okonkwo',role:'administrator',department:'information-technology',email:'admin@haab.com'}
+
+        // Password strength checker
+        document.getElementById('registerPassword').addEventListener('input', function() {
+            const password = this.value;
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+            
+            let score = 0;
+            let feedback = [];
+            
+            // Length check
+            if (password.length >= 8) score += 1;
+            else feedback.push('8+ characters');
+            
+            // Uppercase check
+            if (/[A-Z]/.test(password)) score += 1;
+            else feedback.push('uppercase letter');
+            
+            // Lowercase check
+            if (/[a-z]/.test(password)) score += 1;
+            else feedback.push('lowercase letter');
+            
+            // Number check
+            if (/[0-9]/.test(password)) score += 1;
+            else feedback.push('number');
+            
+            // Symbol check
+            if (/[^A-Za-z0-9]/.test(password)) score += 1;
+            else feedback.push('symbol');
+            
+            // Update strength bar
+            strengthFill.className = 'strength-fill';
+            if (score <= 2) {
+                strengthFill.classList.add('strength-weak');
+                strengthText.textContent = 'Weak';
+            } else if (score === 3) {
+                strengthFill.classList.add('strength-fair');
+                strengthText.textContent = 'Fair';
+            } else if (score === 4) {
+                strengthFill.classList.add('strength-good');
+                strengthText.textContent = 'Good';
+            } else {
+                strengthFill.classList.add('strength-strong');
+                strengthText.textContent = 'Strong';
+            }
+            
+            // Update requirements text
+            document.getElementById('strengthRequirements').textContent = 
+                feedback.length > 0 ? 'Need: ' + feedback.join(', ') : 'All requirements met!';
+        });
+
+        // Confirm password validation
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = this.value;
+            const errorDiv = document.getElementById('confirmPasswordError');
+            
+            if (confirmPassword && password !== confirmPassword) {
+                showFieldError('confirmPassword', 'Passwords do not match');
+            } else {
+                clearFieldError('confirmPassword');
+            }
+        });
+
+        // Phone number formatting
+        document.getElementById('registerPhone').addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            
+            if (value.startsWith('234')) {
+                value = value.substring(3);
+            }
+            
+            if (value.length <= 10) {
+                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+                this.value = '+234-' + value;
+            }
+        });
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Clear previous errors
+            clearAllErrors();
+            
+            // Validate inputs
+            if (!validateEmail(email)) {
+                showFieldError('loginEmail', 'Please enter a valid email address');
+                return;
+            }
+            
+            if (!password) {
+                showFieldError('loginPassword', 'Password is required');
+                return;
+            }
+            
+            // Show loading state
+            setLoadingState('login', true);
+            
+            // Simulate API call
+            setTimeout(() => {
+                const user = registeredUsers[email.toLowerCase()];
+                
+                if (user && user.password === password) {
+                    // Successful login
+                    setLoadingState('login', false);
+                    showSuccessModal(
+                        'Login Successful!',
+                        `Welcome back, ${user.name}! Redirecting to your dashboard...`,
+                        'dashboard'
+                    );
+                } else {
+                    // Failed login
+                    setLoadingState('login', false);
+                    document.getElementById('errorMessage').textContent = 
+                        user ? 'Incorrect password. Please try again.' : 'No account found with this email address.';
+                    showModal('errorModal');
+                }
+            }, 1500);
+        });
+
+        // Registration form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('registerName').value.trim(),
+                email: document.getElementById('registerEmail').value.toLowerCase().trim(),
+                phone: document.getElementById('registerPhone').value.trim(),
+                password: document.getElementById('registerPassword').value,
+                confirmPassword: document.getElementById('confirmPassword').value,
+                role: document.querySelector('input[name="role"]:checked')?.value,
+                department: document.getElementById('registerDepartment').value
             };
-            currentUser=users[role];
-            sessionStorage.setItem('currentUser',JSON.stringify(currentUser));
-            location.reload();
+            
+            // Clear previous errors
+            clearAllErrors();
+            
+            // Validate form
+            let isValid = true;
+            
+            if (!formData.name || formData.name.length < 2) {
+                showFieldError('registerName', 'Please enter your full name');
+                isValid = false;
+            }
+            
+            if (!validateEmail(formData.email)) {
+                showFieldError('registerEmail', 'Please enter a valid email address');
+                isValid = false;
+            } else if (registeredUsers[formData.email]) {
+                showFieldError('registerEmail', 'An account with this email already exists');
+                isValid = false;
+            }
+            
+            if (!validatePhone(formData.phone)) {
+                showFieldError('registerPhone', 'Please enter a valid Nigerian phone number');
+                isValid = false;
+            }
+            
+            if (!validatePassword(formData.password)) {
+                showFieldError('registerPassword', 'Password must be at least 8 characters with uppercase, lowercase, number, and symbol');
+                isValid = false;
+            }
+            
+            if (formData.password !== formData.confirmPassword) {
+                showFieldError('confirmPassword', 'Passwords do not match');
+                isValid = false;
+            }
+            
+            if (!formData.role) {
+                showFieldError('role', 'Please select your role');
+                isValid = false;
+            }
+            
+            if (!formData.department) {
+                showFieldError('department', 'Please select your department');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading state
+            setLoadingState('register', true);
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Add user to registered users (in real app, this would save to database)
+                registeredUsers[formData.email] = {
+                    name: formData.name,
+                    password: formData.password,
+                    role: formData.role,
+                    department: formData.department,
+                    phone: formData.phone
+                };
+                
+                setLoadingState('register', false);
+                showSuccessModal(
+                    'Account Created Successfully!',
+                    `Welcome to H.A.A-B Banking System, ${formData.name}! You can now login with your credentials.`,
+                    'login'
+                );
+            }, 2000);
+        });
+
+        // Helper functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
         }
-        function initializeDashboard(user){
-            document.getElementById('loadingScreen').style.display='none';
-            document.getElementById('dashboardContainer').style.display='flex';
-            document.getElementById('userAvatar').textContent=user.name.split(' ').map(n=>n[0]).join('');
-            document.getElementById('userName').textContent=user.name;
-            document.getElementById('userRole').textContent=user.role.charAt(0).toUpperCase()+user.role.slice(1);
-            document.getElementById('userDepartment').textContent=formatDepartment(user.department);
-            setupNavigation(user.role);
-            showPage(user.role+'-dashboard');
-            const nameElements={'initiator':'initiator-name','supervisor':'supervisor-name','administrator':'admin-name'};
-            if(nameElements[user.role]){document.getElementById(nameElements[user.role]).textContent=user.name}
+
+        function validatePhone(phone) {
+            const re = /^\+234-\d{3}-\d{3}-\d{4}$/;
+            return re.test(phone);
         }
-        function formatDepartment(dept){
-            return dept.split('-').map(word=>word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
+
+        function validatePassword(password) {
+            return password.length >= 8 &&
+                   /[A-Z]/.test(password) &&
+                   /[a-z]/.test(password) &&
+                   /[0-9]/.test(password) &&
+                   /[^A-Za-z0-9]/.test(password);
         }
-        function setupNavigation(role){
-            const navigationMenu=document.getElementById('navigationMenu');
-            let menuItems='';
-            switch(role){
+
+        function showFieldError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            
+            field.classList.add('error');
+            field.classList.remove('success');
+            errorDiv.className = 'validation-message error';
+            errorDiv.innerHTML = `<span>⚠️</span> ${message}`;
+        }
+
+        function clearFieldError(fieldId) {
+            const field = document.getElementById(fieldId);
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            
+            field.classList.remove('error');
+            field.classList.add('success');
+            errorDiv.className = 'validation-message success';
+            errorDiv.innerHTML = '<span>✓</span> Looks good!';
+        }
+
+        function clearAllErrors() {
+            document.querySelectorAll('.form-control').forEach(field => {
+                field.classList.remove('error', 'success');
+            });
+            document.querySelectorAll('.validation-message').forEach(msg => {
+                msg.className = 'validation-message';
+                msg.innerHTML = '';
+            });
+        }
+
+        function setLoadingState(form, loading) {
+            const btn = document.getElementById(form + 'Btn');
+            const spinner = document.getElementById(form + 'Spinner');
+            const text = document.getElementById(form + 'BtnText');
+            
+            if (loading) {
+                btn.disabled = true;
+                spinner.style.display = 'block';
+                text.textContent = form === 'login' ? 'Signing In...' : 'Creating Account...';
+            } else {
+                btn.disabled = false;
+                spinner.style.display = 'none';
+                text.textContent = form === 'login' ? 'Login' : 'Create Account';
+            }
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showSuccessModal(title, message, action) {
+            document.getElementById('successTitle').textContent = title;
+            document.getElementById('successMessage').textContent = message;
+            document.getElementById('successModal').setAttribute('data-action', action);
+            showModal('successModal');
+        }
+
+        function handleSuccessAction() {
+            const action = document.getElementById('successModal').getAttribute('data-action');
+            closeModal('successModal');
+            
+            if (action === 'dashboard') {
+                // Redirect to dashboard with user data
+                const email = document.getElementById('loginEmail').value;
+                const user = registeredUsers[email.toLowerCase()];
+                redirectToDashboard(user);
+            } else if (action === 'login') {
+                // Switch to login tab and clear registration form
+                document.querySelector('[data-tab="login"]').click();
+                document.getElementById('registerForm').reset();
+                clearAllErrors();
+            }
+        }
+
+        function redirectToDashboard(user) {
+            // Store user session (in real app, use proper session management)
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+            
+            // Create dashboard redirect with role-based access
+            let dashboardUrl = '';
+            switch(user.role) {
                 case 'initiator':
-                    menuItems=`
-                        <li class="nav-item"><a class="nav-link active" onclick="showPage('initiator-dashboard')"><span class="nav-icon">📊</span> Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="showPage('create-request')"><span class="nav-icon">➕</span> New Request</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="showPage('my-requests')"><span class="nav-icon">📝</span> My Requests</a></li>
-                    `;
+                    dashboardUrl = 'dashboard-initiator.html';
                     break;
                 case 'supervisor':
-                    menuItems=`
-                        <li class="nav-item"><a class="nav-link active" onclick="showPage('supervisor-dashboard')"><span class="nav-icon">📊</span> Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="showPage('pending-approvals')"><span class="nav-icon">⏳</span> Pending Reviews</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="showPage('team-reports')"><span class="nav-icon">📈</span> Team Reports</a></li>
-                    `;
+                    dashboardUrl = 'dashboard-supervisor.html';
                     break;
                 case 'administrator':
-                    menuItems=`
-                        <li class="nav-item"><a class="nav-link active" onclick="showPage('administrator-dashboard')"><span class="nav-icon">📊</span> Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="showCreateUserModal()"><span class="nav-icon">👤</span> Create User</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="showPage('user-management')"><span class="nav-icon">👥</span> Manage Users</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="showPage('system-settings')"><span class="nav-icon">⚙️</span> System Settings</a></li>
+                    dashboardUrl = 'dashboard-admin.html';
+                    break;
+                default:
+                    dashboardUrl = 'dashboard.html';
+            }
+            
+            // Show role-specific welcome message
+            alert(`Welcome ${user.name}!\n\nRole: ${user.role.charAt(0).toUpperCase() + user.role.slice(1)}\nDepartment: ${user.department}\n\nRedirecting to your ${user.role} dashboard...`);
+            
+            // In a real application, you would redirect to the actual dashboard
+            // window.location.href = dashboardUrl;
+            
+            // For demo purposes, show what dashboard they would access
+            showRoleDashboardDemo(user);
+        }
+
+        function showRoleDashboardDemo(user) {
+            let dashboardFeatures = '';
+            
+            switch(user.role) {
+                case 'initiator':
+                    dashboardFeatures = `
+                    🔸 Create new customer update requests
+                    🔸 View your submitted requests
+                    🔸 Track request status
+                    🔸 Resubmit rejected requests
+                    🔸 Upload supporting documents
+                    `;
+                    break;
+                    
+                case 'supervisor':
+                    dashboardFeatures = `
+                    🔸 Review pending requests
+                    🔸 Approve or reject requests
+                    🔸 Add review comments
+                    🔸 Monitor team performance
+                    🔸 Generate approval reports
+                    `;
+                    break;
+                    
+                case 'administrator':
+                    dashboardFeatures = `
+                    🔸 Create new user accounts
+                    🔸 Assign roles and permissions
+                    🔸 Manage system settings
+                    🔸 View all system activities
+                    🔸 Configure validation rules
+                    🔸 Generate comprehensive reports
                     `;
                     break;
             }
-            navigationMenu.innerHTML=menuItems;
-        }
-        function showPage(pageId){
-            document.querySelectorAll('.dashboard-page').forEach(page=>page.classList.remove('active'));
-            const targetPage=document.getElementById(pageId);
-            if(targetPage){targetPage.classList.add('active')}
-            document.querySelectorAll('.nav-link').forEach(link=>link.classList.remove('active'));
-        }
-        function showCreateUserModal(){
-            document.getElementById('createUserModal').classList.add('active')
-        }
-        function closeModal(modalId){
-            document.getElementById(modalId).classList.remove('active')
-        }
-        function approveRequest(requestId){
-            if(confirm(`Are you sure you want to approve request ${requestId}?`)){
-                alert(`✅ Request ${requestId} has been approved and will be processed in the core banking system.`)
-            }
-        }
-        function rejectRequest(requestId){
-            const reason=prompt(`Please provide a reason for rejecting request ${requestId}:`);
-            if(reason&&reason.trim()){
-                alert(`❌ Request ${requestId} has been rejected.\nReason: ${reason}\n\nThe initiator will be notified to make corrections.`)
-            }
-        }
-        function reviewRequest(requestId){
-            document.getElementById('reviewModalTitle').textContent=`Review Request - ${requestId}`;
-            document.getElementById('reviewModalContent').innerHTML=`
-                <div style="margin-bottom:1.5rem">
-                    <h3>Customer Information</h3>
-                    <p><strong>Name:</strong> Funmilayo Adepoju</p>
-                    <p><strong>Account:</strong> ACC-678901</p>
-                    <p><strong>Current Status:</strong> Active Customer</p>
-                </div>
-                <div style="margin-bottom:1.5rem">
-                    <h3>Requested Changes</h3>
-                    <p><strong>Update Type:</strong> Personal Details (Name Change)</p>
-                    <p><strong>Current Name:</strong> Funmilayo Adeoye</p>
-                    <p><strong>New Name:</strong> Funmilayo Adepoju</p>
-                    <p><strong>Reason:</strong> Marriage</p>
-                </div>
-                <div style="margin-bottom:1.5rem">
-                    <h3>Supporting Documents</h3>
-                    <p>✅ Marriage Certificate (verified)</p>
-                    <p>✅ Updated ID Card (verified)</p>
-                    <p>✅ Customer signed instruction</p>
-                </div>
-                <div style="margin-bottom:1.5rem">
-                    <h3>Validation Status</h3>
-                    <p>✅ All required documents present</p>
-                    <p>✅ Customer identity verified</p>
-                    <p>✅ Marriage certificate authentic</p>
-                </div>
-                <div style="margin-top:2rem;display:flex;gap:1rem">
-                    <button class="btn btn-success" onclick="approveRequest('${requestId}');closeModal('reviewModal')">✓ Approve Request</button>
-                    <button class="btn btn-danger" onclick="rejectRequest('${requestId}');closeModal('reviewModal')">✗ Reject Request</button>
-                    <button class="btn btn-secondary" onclick="closeModal('reviewModal')">Close</button>
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 500px;">
+                    <div class="modal-icon" style="color: #667eea; font-size: 3rem;">👋</div>
+                    <h3>Welcome to Your ${user.role.charAt(0).toUpperCase() + user.role.slice(1)} Dashboard</h3>
+                    <p><strong>${user.name}</strong> - ${user.department}</p>
+                    <div style="text-align: left; background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <h4 style="color: #2d3748; margin-bottom: 0.5rem;">Your Access Includes:</h4>
+                        <pre style="font-family: inherit; white-space: pre-line; line-height: 1.6;">${dashboardFeatures}</pre>
+                    </div>
+                    <div class="modal-buttons">
+                        <button class="btn-modal primary" onclick="document.body.removeChild(this.closest('.modal')); location.reload();">Continue to Dashboard</button>
+                    </div>
                 </div>
             `;
-            document.getElementById('reviewModal').classList.add('active');
+            
+            document.body.appendChild(modal);
         }
-        document.getElementById('createUserForm').addEventListener('submit',function(e){
-            e.preventDefault();
-            const newUser={
-                name:document.getElementById('newUserName').value,
-                email:document.getElementById('newUserEmail').value,
-                phone:document.getElementById('newUserPhone').value,
-                role:document.getElementById('newUserRole').value,
-                department:document.getElementById('newUserDepartment').value
-            };
-            alert(`✅ User created successfully!\n\nName: ${newUser.name}\nEmail: ${newUser.email}\nRole: ${newUser.role}\nDepartment: ${formatDepartment(newUser.department)}\n\nTemporary password has been sent to their email.`);
-            this.reset();
-            closeModal('createUserModal');
-        });
-        document.getElementById('updateRequestForm').addEventListener('submit',function(e){
-            e.preventDefault();
-            const requestData={
-                accountNumber:document.getElementById('accountNumber').value,
-                customerName:document.getElementById('customerName').value,
-                updateType:document.getElementById('updateType').value,
-                priority:document.getElementById('priority').value,
-                instructionRef:document.getElementById('instructionRef').value,
-                comments:document.getElementById('comments').value
-            };
-            const requestId='WF-2024-'+Math.floor(Math.random()*1000).toString().padStart(3,'0');
-            alert(`✅ Request submitted successfully!\n\nRequest ID: ${requestId}\nCustomer: ${requestData.customerName}\nUpdate Type: ${requestData.updateType}\nPriority: ${requestData.priority}`);
-            this.reset();
-            showPage('initiator-dashboard');
-        });
-        function logout(){
-            sessionStorage.removeItem('currentUser');
-            location.reload();
+
+        function showForgotPassword() {
+            closeModal('errorModal');
+            showModal('forgotPasswordModal');
         }
+
+        function sendResetEmail() {
+            const email = document.getElementById('forgotEmail').value;
+            
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (!registeredUsers[email.toLowerCase()]) {
+                alert('No account found with this email address');
+                return;
+            }
+            
+            alert(`Password reset instructions have been sent to ${email}`);
+            closeModal('forgotPasswordModal');
+        }
+
+        // Role-based features description
+        const roleDescriptions = {
+            'initiator': {
+                title: 'Request Initiator',
+                description: 'Create and submit customer information update requests',
+                permissions: [
+                    'Create new update requests',
+                    'Upload supporting documents', 
+                    'View own request history',
+                    'Resubmit rejected requests'
+                ]
+            },
+            'supervisor': {
+                title: 'Request Supervisor', 
+                description: 'Review, approve, or reject customer update requests',
+                permissions: [
+                    'Review pending requests',
+                    'Approve/reject requests',
+                    'Add review comments',
+                    'Monitor team requests',
+                    'Access approval analytics'
+                ]
+            },
+            'administrator': {
+                title: 'System Administrator',
+                description: 'Manage users, roles, and system configuration',
+                permissions: [
+                    'Create and manage users',
+                    'Assign roles and permissions',
+                    'Configure system settings',
+                    'Access all system data',
+                    'Generate system reports',
+                    'Manage validation rules'
+                ]
+            }
+        };
+
+        // Show role information when selected
+        document.querySelectorAll('input[name="role"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    const roleInfo = roleDescriptions[this.value];
+                    const existingInfo = document.querySelector('.role-info');
+                    
+                    if (existingInfo) {
+                        existingInfo.remove();
+                    }
+                    
+                    const roleInfoDiv = document.createElement('div');
+                    roleInfoDiv.className = 'role-info';
+                    roleInfoDiv.style.cssText = `
+                        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+                        border: 1px solid rgba(102, 126, 234, 0.3);
+                        border-radius: 8px;
+                        padding: 1rem;
+                        margin-top: 1rem;
+                        font-size: 0.875rem;
+                    `;
+                    
+                    roleInfoDiv.innerHTML = `
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">${roleInfo.title}</h4>
+                        <p style="color: #4a5568; margin-bottom: 0.75rem;">${roleInfo.description}</p>
+                        <div style="color: #718096;">
+                            <strong>Permissions:</strong>
+                            <ul style="margin: 0.25rem 0 0 1rem; padding: 0;">
+                                ${roleInfo.permissions.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                    
+                    this.closest('.form-group').appendChild(roleInfoDiv);
+                }
+            });
+        });
+
+        // Add demo users for each role
+        Object.assign(registeredUsers, {
+            'admin@haab.com': {
+                name: 'Emeka Okonkwo',
+                password: 'Admin123!',
+                role: 'administrator',
+                department: 'information-technology',
+                phone: '+234-812-345-6789'
+            },
+            'supervisor@haab.com': {
+                name: 'Aisha Muhammed',
+                password: 'Super123!',
+                role: 'supervisor', 
+                department: 'operations',
+                phone: '+234-813-456-7890'
+            },
+            'initiator@haab.com': {
+                name: 'Olumide Adebayo',
+                password: 'Init123!',
+                role: 'initiator',
+                department: 'operations', 
+                phone: '+234-814-567-8901'
+            }
+        });
+
+        // Add demo credentials display
+        function showDemoCredentials() {
+            const demoModal = document.createElement('div');
+            demoModal.className = 'modal active';
+            demoModal.innerHTML = `
+                <div class="modal-content" style="max-width: 600px;">
+                    <h3>Demo User Accounts</h3>
+                    <p>Try logging in with these pre-configured accounts:</p>
+                    
+                    <div style="display: grid; gap: 1rem; margin: 1.5rem 0; text-align: left;">
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border-left: 4px solid #e53e3e;">
+                            <h4 style="color: #e53e3e; margin-bottom: 0.5rem;">🔧 Administrator</h4>
+                            <p><strong>Email:</strong> admin@haab.com</p>
+                            <p><strong>Password:</strong> Admin123!</p>
+                            <small>Can create users, assign roles, manage system settings</small>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border-left: 4px solid #ed8936;">
+                            <h4 style="color: #ed8936; margin-bottom: 0.5rem;">👔 Supervisor</h4>
+                            <p><strong>Email:</strong> supervisor@haab.com</p>
+                            <p><strong>Password:</strong> Super123!</p>
+                            <small>Can review, approve, or reject requests</small>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
+                            <h4 style="color: #38a169; margin-bottom: 0.5rem;">📝 Initiator</h4>
+                            <p><strong>Email:</strong> initiator@haab.com</p>
+                            <p><strong>Password:</strong> Init123!</p>
+                            <small>Can create and submit customer update requests</small>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button class="btn-modal primary" onclick="document.body.removeChild(this.closest('.modal'));">Got it!</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(demoModal);
+        }
+
+        // Add demo credentials button
+        const demoBtn = document.createElement('div');
+        demoBtn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        `;
+        demoBtn.innerHTML = '🔑 Demo Accounts';
+        demoBtn.onclick = showDemoCredentials;
+        demoBtn.onmouseover = function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.6)';
+        };
+        demoBtn.onmouseout = function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
+        };
+
+        document.body.appendChild(demoBtn);
+
+        // Show demo credentials automatically after 3 seconds
+        setTimeout(() => {
+            if (!sessionStorage.getItem('demoShown')) {
+                showDemoCredentials();
+                sessionStorage.setItem('demoShown', 'true');
+            }
+        }, 3000);
+
+        // Clear demo flag on page reload for testing
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.removeItem('demoShown');
+        });
     </script>
 </body>
-</html>
+</html> 
